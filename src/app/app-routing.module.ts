@@ -12,10 +12,21 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }
-];
+    path: 'sportslist',
+    children: [
+      {
+        path: '',
+        loadChildren:
+          './sportslist/sportslist.module#SportslistPageModule'
+      },
+      {
+        path: ':sportid',
+        loadChildren: './sport/sport.module#SportPageModule'
+      }
+    ]
+   }
+  ];
+
 
 @NgModule({
   imports: [
